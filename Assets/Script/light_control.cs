@@ -8,14 +8,14 @@ namespace Exploder.Demo
 
 		private ExploderObject Exploder;
 		private GameObject gameObject;
-
+		private bool explode_flg;
 
 		string strId;
 
 		// Use this for initialization
 		void Start () {
 			//Debug.Log("start!");
-
+			explode_flg = true;
 
 		}
 
@@ -25,16 +25,20 @@ namespace Exploder.Demo
 			//Debug.Log (gameObject);
 			if(this){
 				Vector3 tmp = this.transform.position;
+				if(explode_flg){
 
-				if(-4.5f > tmp.y){
-					Exploder = this.GetComponent<ExploderObject>();
+					if(-4.5f > tmp.y){
+						explode_flg = false;
+						Exploder = this.GetComponent<ExploderObject>();
 
 
-					if (Exploder)
-					{
-						//Debug.Log ("out!!");
-						Exploder.ExplodeRadius();
+						if (Exploder)
+						{
+							//Debug.Log ("out!!");
+							Exploder.ExplodeRadius();
+						}
 					}
+
 				}
 			}
 			//Debug.Log (tmp.y);
